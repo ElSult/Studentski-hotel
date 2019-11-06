@@ -1,0 +1,50 @@
+﻿@using StudentskiHotel.Data.EntityModels
+@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.PrikaziObrokVM
+
+<div class="form-group" id="ajaxdiv">
+
+    <form action="/ModulAdministrator/Obrok/PrikaziObroke" autocomplete="off">
+        <table>
+            <tr>             
+                <td>
+                    <a href="/ModulAdministrator/Obrok/DodajObrok" ajax-poziv="da" ajax-rezultat="ajaxdiv1" class="btn btn-secondary">Novi obrok</a>
+
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <br />
+
+    <div class="form-group" id="ajaxdiv1"></div>
+
+
+
+    <table id="tabela" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Vrijeme pocetka</th>
+                <th>Vrijeme zavrsetka</th>
+                <th>Broj obroka</th>
+                <th>Vrsta obroka</th>
+                <th>Akcija</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Obrok O in Model.Obroci)
+            {
+                <tr>
+                    <td>@O.VrijemePocetka</td>
+                    <td>@O.VrijemeZavrsetka</td>
+                    <td>@O.BrojObroka</td>
+                    <td>@O.VrstaObroka.Vrsta</td>
+                    <td>
+                        <a href="/ModulAdministrator/Obrok/UrediObrok?Id=@O.Id" ajax-poziv="da" ajax-rezultat="ajaxdiv1" class="btn btn-warning">Uredi</a>
+                        <a href="/ModulAdministrator/Obrok/ObrisiObrok?Id=@O.Id" ajax-poziv="da" ajax-rezultat="ajaxdiv" class="btn btn-danger">Obriši</a>
+                    </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

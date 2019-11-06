@@ -1,0 +1,96 @@
+﻿@model StudentskiHotel.Web.ViewModels.LoginVM
+@{
+    ViewData["Title"] = "Login";
+    string error_poruka = (TempData.ContainsKey("error_poruka") ? TempData["error_poruka"].ToString() : (string)ViewData["error_poruka"]);
+    Layout = "_LayoutLogin";
+}
+
+
+@*<div id="log" class="col-md-6 col-md-offset-4">
+        <form action="/Autentifikacija/Login" method="post" autocomplete="off">
+            <table>
+                <tr>
+                    <td>Korisnicko ime:</td>
+                    <td>@Html.TextBoxFor(x => x.KorisnickoIme, new { @class = "form-control" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.KorisnickoIme)</td>
+                </tr>
+                <tr>
+                    <td>Lozinka:</td>
+                    <td>@Html.PasswordFor(x => x.Lozinka, new { @class = "form-control" })</td>
+                    <td>@Html.ValidationMessageFor(x => x.Lozinka)</td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>@Html.CheckBoxFor(x => x.ZapamtiLozinku, new { @class = "checkbox-control" }) @Html.LabelFor(x => x.ZapamtiLozinku)</td>
+                </tr>
+
+                @if (error_poruka != null)
+                {
+                    <tr>
+                        <td colspan="3">
+                            <div class="alert-danger">
+                                @error_poruka
+                            </div>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td><input type="submit" value="Login" class="btn btn-primary" /></td>
+                </tr>
+            </table>
+        </form>
+    </div>*@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<body class="bg-dark">
+    <div class="container">
+        <div class="card card-login mx-auto mt-10">
+            <div class="card-header">Prijava na sistem</div>
+            <div class="card-body">
+                <form action="/Autentifikacija/Login" method="post" autocomplete="off">
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            Korisničko ime:
+                            @Html.TextBoxFor(x => x.KorisnickoIme, new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-label-group">
+                            Lozinka:
+                            @Html.PasswordFor(x => x.Lozinka, new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                @Html.CheckBoxFor(x => x.ZapamtiLozinku, new { @class = "checkbox-control" }) @Html.LabelFor(x => x.ZapamtiLozinku)
+                            </label>
+                        </div>
+                    </div>
+
+                    @if (error_poruka != null)
+                    {
+                        <div class="form-group">
+                            <div class="alert-danger">
+                                @error_poruka
+                            </div>
+                        </div>
+                    }
+                    <input type="submit" value="Prijava" class="btn btn-primary btn-block" />
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,17 @@
+﻿@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.DodajDrzavaVM
+
+
+<form action="/ModulAdministrator/Lokacija/SnimiDrzava" autocomplete="off" ajax-poziv="da" ajax-rezultat="ajaxdiv">
+    <table>
+        <tr>
+
+            <th>Država:</th>
+
+            <td>@Html.TextBoxFor(x => x.Naziv, new { @class = "form-control" })</td>
+            <td><input type="submit" value="Snimi" class="btn btn-success" /></td>
+        </tr>
+
+       
+    </table>
+</form>
+

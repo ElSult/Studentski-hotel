@@ -1,0 +1,69 @@
+﻿@using StudentskiHotel.Data.EntityModels;
+@model StudentskiHotel.Web.Areas.ModulZaposlenik.ViewModels.DodajStudentVM
+
+
+@{
+    string poruka = (string)ViewData["poruka"];
+}
+<form action="/ModulZaposlenik/Student/SnimiStudent">
+    <table class="table table-striped">
+        <tr>@Html.HiddenFor(x => x.Id)</tr>
+        <tr>
+            <td>Ime</td>
+            <td>@Html.TextBoxFor(x => x.Ime, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.Ime, "", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <td>Prezime</td>
+            <td>@Html.TextBoxFor(x => x.Prezime, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.Prezime, "", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <td>Ime oca</td>
+            <td>@Html.TextBoxFor(x => x.ImeOca, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.ImeOca, "", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <td>Kontakt telefon</td>
+            <td>@Html.TextBoxFor(x => x.KontaktTelefon, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.KontaktTelefon, "", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <td>Matični broj</td>
+            <td>@Html.TextBoxFor(x => x.MaticniBroj, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.MaticniBroj, "", new { @class = "text-danger" }) <span style="color:crimson">@poruka</span></td>
+           
+        </tr>
+        <tr>
+            <td>Spol</td>
+            <td>@Html.DropDownList("Spol", Html.GetEnumSelectList<Gender>(), "Odaberite spol", new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.Spol, "", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <td>Datum rodenja</td>
+            <td>@Html.TextBoxFor(x => x.DatumRodenja, "{0:yyyy-MM-dd}", new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.DatumRodenja, "", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <td>Fakultet</td>
+            <td>@Html.DropDownListFor(x => x.FakultetID, Model.Fakulteti, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.FakultetID, "Fakultet je obavezno polje!", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <td>Godina studija</td>
+            <td>@Html.DropDownListFor(x => x.GodinaStudijaID, Model.GodineStudija, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.GodinaStudijaID, "Godina studija je obavezno polje!", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <td>Grad</td>
+            <td>@Html.DropDownListFor(x => x.GradID, Model.Gradovi, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.GradID, "Grad je obavezno polje!", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <td>Aktivan</td>
+            <td>@Html.CheckBoxFor(x => x.IsAktivan, new { @class = "form-control" })</td>
+        </tr>
+        <tr><td><input type="submit" value="Snimi" class="btn btn-success" /></td></tr>
+    </table>
+
+</form>

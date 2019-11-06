@@ -1,0 +1,49 @@
+﻿@using StudentskiHotel.Data.EntityModels;
+@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.PrikaziAkademskaGodinaVM
+
+
+
+<div class="form-group" id="ajaxdiv">
+
+    <form action="/ModulAdministrator/AkademskaGodina/PrikaziAkademskaGodina" autocomplete="off">
+        <table>
+            <tr>
+                <th>Unesite akademsku godinu:</th>
+                <td>
+                    @Html.TextBoxFor(x => x.NazivPretrage, new { @class = "form-control", placeholder = "Unesite akademsku godinu..." })
+                </td>
+                <td>
+                    <input type="submit" value="Pretraži" class="btn btn-secondary" />
+
+                </td>
+                <td>
+                    <a href="/ModulAdministrator/AkademskaGodina/DodajAkademskaGodina" ajax-poziv="da" ajax-rezultat="ajaxdiv1" class="btn btn-secondary">Nova akademska godina</a>
+
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br />
+   
+    <div class="form-group" id="ajaxdiv1"></div>
+
+
+    <table class="table tab-content">
+        <thead>
+            <tr><th>Akademske godine:</th></tr>
+        </thead>
+        <tbody>
+            @foreach (AkademskaGodina x in Model.Godine)
+            {
+                <tr>
+                    <td>@x.AkGodina</td>
+                    <td><a href="/ModulAdministrator/AkademskaGodina/UrediAkademskaGodina?id=@x.Id" ajax-poziv="da" ajax-rezultat="ajaxdiv1" class="btn btn-warning">Uredi</a></td>
+                    <td><a href="/ModulAdministrator/AkademskaGodina/ObrisiAkademskaGodina?id=@x.Id" class="btn btn-danger" ajax-poziv="da" ajax-rezultat="ajaxdiv">Obriši</a></td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+
+</div>

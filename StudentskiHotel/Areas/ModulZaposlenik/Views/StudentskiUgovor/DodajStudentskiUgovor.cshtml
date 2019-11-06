@@ -1,0 +1,46 @@
+﻿
+@model StudentskiHotel.Web.Areas.ModulZaposlenik.ViewModels.DodajStudentskiUgovorVM
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@addTagHelper *, AuthoringTagHelpers
+
+
+<form action="/ModulZaposlenik/StudentskiUgovor/SnimiStudentskiUgovor" autocomplete="off">
+    <table class="table table-striped">
+        <tr>@Html.HiddenFor(x => x.StudentID)</tr>
+        <tr>
+            <th>Broj kartice</th>
+            <td>@Html.TextBoxFor(x => x.BrojKartice, new { @class = "form-control" }) </td>
+           
+        </tr>
+        <tr>
+            <th>Ugovor zakljucen dana</th>
+            <td>@Html.EditorFor(x => x.UgovorZakljucenDana, new { htmlAttributes = new { @class = "form-control" } })</td>
+          
+        </tr>
+        <tr>
+            <th>Mjesecna najamnina</th>
+            <td>@Html.TextBoxFor(x => x.MjesecnaNajamnina, new { @class = "form-control" }) </td>
+           
+        </tr>
+        <tr>
+            <th>Soba</th>
+            <td>@Html.DropDownListFor(x => x.SobaID, Model.sobe, new { @class = "form-control" }) </td>
+          
+        </tr>
+
+        @Html.HiddenFor(x => x.StudentID)
+        <tr>
+            <th>Akademska godina</th>
+            <td>@Html.DropDownListFor(x => x.AkademskaGodinaID, Model.akGodine, new { @class = "form-control" }) </td>
+            
+        </tr>
+        <tr>
+           
+            <td>@Html.HiddenFor(x => x.IsAktivan) </td>
+           
+        </tr>
+
+        <tr><td><input type="submit" value="Snimi" class="btn btn-success" /></td></tr>
+    </table>
+</form>

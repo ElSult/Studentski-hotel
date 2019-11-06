@@ -1,0 +1,62 @@
+﻿@using StudentskiHotel.Data.EntityModels;
+@model StudentskiHotel.Web.Areas.ModulZaposlenik.ViewModels.PrikaziStudentskiUgovorVM
+
+
+<a href="/ModulZaposlenik/StudentskiUgovor/DodajStudentskiUgovor?studentID=@Model.studentId" class="btn btn-secondary">Novi studentski ugovor</a>
+
+<div id="ajaxdiv">
+
+</div>
+<br />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Broj kartice</th>
+            <th>Ugovor zakljucen dana</th>
+            <th>Mjesečna najamnina</th>
+            <th>Akademska godina</th>
+            <th>Soba</th>
+            <th>Zaposlenik</th>
+            <th>Status</th>
+          
+           
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (StudentskiUgovor x in Model.ugovori)
+        {
+            <tr>
+                <td>@x.BrojKartice</td>
+                <td>@x.UgovorZakljucenDana.ToShortDateString()</td>
+                <td>@x.MjesecnaNajamnina</td>
+                <td>@x.AkademskaGodina.AkGodina</td>
+                <td>@x.Soba.BrojSobe</td>
+                <td>@x.Zaposlenik.Ime </td>
+                @if(@x.IsAktivan)
+                {
+                <td>Aktivan</td>
+                }
+                else
+                {
+                <td>Neaktivan</td>
+                }
+             
+
+                <td><a href="/ModulZaposlenik/StudentskiUgovor/UrediStudentskiUgovor?sid=@x.Id" class="btn btn-warning">Uredi</a></td>
+                <td><a href="/ModulZaposlenik/UgovorObrok/DodajUO?ugovorId=@x.Id&studentId=@x.StudentID" class="btn btn-secondary" >Dodaj obrok</a></td>
+               
+                <td><a href="/ModulZaposlenik/UgovorObrok/PrikaziUgovorObrok?ugovorId=@x.Id&studentId=@x.StudentID" class="btn btn-secondary" >Prikaži obroke</a></td>
+
+            </tr>
+
+        }
+    </tbody>
+
+</table>
+
+<a href="/ModulZaposlenik/Student/PrikaziStudent" class="btn btn-secondary">Nazad</a>
+
+
+
+

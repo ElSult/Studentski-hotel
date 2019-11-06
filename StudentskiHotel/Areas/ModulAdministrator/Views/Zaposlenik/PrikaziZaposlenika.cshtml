@@ -1,0 +1,62 @@
+﻿@using StudentskiHotel.Data.EntityModels;
+@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.PrikaziZaposlenikaVM
+<form action="/ModulAdministrator/Zaposlenik/PrikaziZaposlenika" autocomplete="off">
+    <table>
+        <tr>
+            <th>Unesite prezime zaposlenika:</th>
+            <td>
+                @Html.TextBoxFor(x => x.prezime, new { @class = "form-control", placeholder = "Unesite prezime..." })
+            </td>
+            <td>
+                <input type="submit" value="Prikaži" class="btn btn-secondary" />
+            </td>
+            <td>
+                <a href="/ModulAdministrator/Zaposlenik/DodajZaposlenika" class="btn btn-secondary">Novi zaposlenik</a>
+
+            </td>
+        </tr>
+    </table>
+</form>
+<br /><br />
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <td>Ime</td>
+            <td>Prezime</td>
+            <td>Matični broj</td>
+            <td>Datum rođenja</td>
+            <td>Spol</td>
+            <td>Mjesto rođenja</td>
+            <td>Stručna sprema</td>
+            <td>Tip zaposlenika</td>
+            <td>Korisnicko ime</td>
+            <td>Lozinka</td>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Zaposlenik x in Model.zaposlenici)
+        {
+            <tr>
+                <td>@x.Ime</td>
+                <td>@x.Prezime</td>
+                <td>@x.MaticniBroj</td>
+                <td>@x.DatumRodenja.ToShortDateString()</td>
+                <td>@x.Spol</td>
+                <td>@x.Grad.Naziv</td>
+                <td>@x.StrucnaSprema.Naziv</td>
+                <td>@x.Tip</td>
+                <td>@x.KorisnickiNalog.KorisnickoIme</td>
+                <td>@x.KorisnickiNalog.Lozinka</td>
+                <td>
+                    <a href="/ModulAdministrator/Zaposlenik/UrediZaposlenika?ZaposlenikId=@x.Id" class="btn btn-warning">Uredi</a>
+                </td>
+                <td>
+                    <a href="/ModulAdministrator/Zaposlenik/ObrisiZaposlenika?ZaposlenikId=@x.Id" class="btn btn-danger">Obrisi</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+    @*<tr><td><a href="/ModulAdministrator/Zaposlenik/DodajZaposlenika" class="btn btn-primary">Dodaj</a></td> </tr>*@
+</table>

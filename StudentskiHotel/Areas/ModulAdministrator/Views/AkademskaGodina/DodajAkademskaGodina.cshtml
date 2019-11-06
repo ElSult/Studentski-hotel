@@ -1,0 +1,18 @@
+﻿@using StudentskiHotel.Data.EntityModels;
+
+@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.DodajAkademskaGodinaVM
+
+@{ 
+   
+    string poruka = (string)ViewData["poruka"];
+}
+
+<form action="/ModulAdministrator/AkademskaGodina/SnimiAkademskaGodina" autocomplete="off" ajax-poziv="da" ajax-rezultat="ajaxdiv">
+    <table>
+        <tr>
+            <th>Akademska godina:</th>
+            <td>@Html.TextBoxFor(x => x.AkGodina, new { @class = "form-control" })</td>
+            <td><input type="submit" value="Snimi" class="btn btn-success" /></td>
+        </tr>
+    </table>
+</form>

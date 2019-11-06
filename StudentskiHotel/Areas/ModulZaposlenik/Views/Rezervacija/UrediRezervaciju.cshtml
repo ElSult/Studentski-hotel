@@ -1,0 +1,58 @@
+﻿@using StudentskiHotel.Data.EntityModels
+@model StudentskiHotel.Web.Areas.ModulZaposlenik.ViewModels.DodajRezervacijuVM
+@{
+    //Layout = "~/Views/Shared/_LayoutAjax.cshtml";
+    string poruka = (string)ViewData["poruka"];
+}
+<form action="/ModulZaposlenik/Rezervacija/SnimiRezervaciju">
+    <table>
+        <tr>@Html.HiddenFor(x => x.Id)</tr>
+        <tr>@Html.HiddenFor(x => x.TuristID)</tr>
+
+        <tr>
+            <td>Vrijeme dolaska:</td>
+            <td>@Html.EditorFor(x => x.VrijemeDolaska)</td>
+            <td>@Html.ValidationMessageFor(x => x.VrijemeDolaska)</td>
+        </tr>
+        <tr>
+            <td>Vrijeme odlaska:</td>
+            <td>@Html.EditorFor(x => x.VrijemeOdlaska)</td>
+            <td>@Html.ValidationMessageFor(x => x.VrijemeOdlaska)</td>
+        </tr>
+        <tr>
+            <td>Nacin placanja:</td>
+            <td>@Html.DropDownListFor(x => x.NacinPlacanjaID, Model.NaciniPlacanja, new { @class = "form-control" }) </td>
+            <td>@Html.ValidationMessageFor(x => x.NacinPlacanjaID, "Nacin placanja je obavezno polje!")</td>
+        </tr>
+        <tr>
+            <td>Kategorija:</td>
+            <td>@Html.DropDownListFor(x => x.KategorijaID, Model.Kategorije, new { @class = "form-control" }) </td>
+            <td>@Html.ValidationMessageFor(x => x.KategorijaID, "Kategorija je obavezno polje!")</td>
+        </tr>
+        <tr>
+            <td>Soba</td>
+            <td>@Html.DropDownListFor(x => x.SobaID, Model.sobe, new { @class = "form-control" }) </td>
+            <td>@Html.ValidationMessageFor(x => x.SobaID, "Soba je obavezno polje!")
+            <span style="color:crimson">@poruka</span></td>
+        </tr>
+        <tr>
+            <td>Usluge</td>
+            <td>
+                @for (int i = 0; i < Model.Usluge.Count(); i++)
+                {
+                    @if (Model.Usluge[i].Selected)
+                    {
+                        <input type="checkbox" value="@Model.Usluge[i].Value" id="Usluge_@Model.Usluge[i].Value" name="OdabraneUsluge" checked> <label for="Usluge_@Model.Usluge[i].Value">@Model.Usluge[i].Text</label><br />
+                    }
+                    else
+                    {
+                        <input type="checkbox" value="@Model.Usluge[i].Value" id="Usluge_@Model.Usluge[i].Value" name="OdabraneUsluge"> <label for="Usluge_@Model.Usluge[i].Value">@Model.Usluge[i].Text</label><br />
+                    }
+                }
+            </td>
+        </tr>
+
+        <tr><td><input type="submit" value="Snimi" class="btn btn-dark" /></td></tr>
+    </table>
+</form>
+

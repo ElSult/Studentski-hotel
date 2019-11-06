@@ -1,0 +1,39 @@
+﻿@using StudentskiHotel.Data.EntityModels;
+
+@model StudentskiHotel.Web.Areas.ModulRestoran.ViewModels.DodajNarudzbuVM
+
+@{
+    string poruka = (string)ViewData["poruka"];
+}
+
+<form action="/ModulRestoran/Narudzba/SnimiNarudzbu">
+    @Html.HiddenFor(x => Model.Id)
+    <table>
+        <tr>
+            <td>Datum narudžbe</td>
+            <td>@Html.EditorFor(x => x.DatumNarudzbe, new { htmlAttributes = new { @class = "form-control" } } )</td>
+            <td>@Html.ValidationMessageFor(x => x.DatumNarudzbe)</td>
+        </tr>
+        <tr>
+            <td>Način plaćanja</td>
+            <td>@Html.DropDownListFor(x => x.NacinPlacanjaID, Model.nacinPlacanja, "Odaberite nacin placanja", new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.NacinPlacanjaID, "Nacin placanja je obavezno polje!", new { @class = "text-danger" })</td>
+        </tr>
+
+
+    </table>
+
+    <div id="stavkeDiv" kategorija-id="@Model.KategorijaId" narudzba-id="@Model.Id">
+    </div>
+
+    <p>
+        @Html.CheckBoxFor(x => Model.Zavrsena) @Html.LabelFor(x => Model.Zavrsena)
+    </p>
+
+    <div>
+    <strong class="text-danger">@poruka</strong>
+    </div>
+
+    <input type="submit" name="snimi" value="Snimi" class="btn btn-success" />
+</form>
+

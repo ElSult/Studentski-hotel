@@ -1,0 +1,32 @@
+﻿@using StudentskiHotel.Data.EntityModels
+@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.DodajProizvodVM
+@{
+    string poruka = (string)ViewData["poruka"];
+}
+
+<form action="/ModulAdministrator/Proizvod/SnimiProizvod" autocomplete="off" ajax-poziv="da" ajax-rezultat="ajaxdiv">
+    <table>
+        <tr>
+            <td>@Html.HiddenFor(x => x.Id)</td>
+        </tr>
+        <tr>
+            <td>Naziv: </td>
+            <td>@Html.TextBoxFor(x => x.Naziv, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.Naziv)
+            @poruka</td>
+    </tr>
+    <tr>
+        <td>Cijena: </td>
+        <td>@Html.TextBoxFor(x => x.Cijena, new { @class = "form-control" })</td>
+        <td>@Html.ValidationMessageFor(x => x.Cijena)</td>
+    </tr>
+    <tr>
+        <td>Odaberite kategoriju:</td>
+        <td>@Html.DropDownListFor(x => x.KategorijaID, Model.Kategorija, new { @class = "form-control" })</td>
+        <td>@Html.ValidationMessageFor(x => x.KategorijaID, "Obavezno odaberite kategoriju proizvoda!", new { @class = "text-danger" })</td>
+    </tr>
+    <tr><td><input type="submit" value="Snimi" class="btn btn-dark" /></td></tr>
+</table>
+
+
+</form>

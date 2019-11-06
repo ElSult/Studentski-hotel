@@ -1,0 +1,28 @@
+﻿@using StudentskiHotel.Data.EntityModels
+@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.DodajObrokVM
+
+@{
+    string poruka = (string)ViewData["poruka"];
+}
+
+<form action="/ModulAdministrator/Obrok/SnimiObrok" autocomplete="off" ajax-poziv="da" ajax-rezultat="ajaxdiv">
+    <table>
+        <tr>
+            <td>Vrijeme pocetka</td>
+            <td>@Html.EditorFor(x => x.VrijemePocetka, new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>Vrijeme zavrsetka</td>
+            <td>@Html.EditorFor(x => x.VrijemeZavrsetka, new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>Broj obroka:</td>
+            <td>@Html.TextBoxFor(x => x.BrojObroka, new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>Vrsta obroka:</td>
+            <td>@Html.DropDownListFor(x => x.VrstaObrokaID, Model.VrstaObroka, new { @class = "form-control" })</td>
+        </tr>
+        <tr><td><input type="submit" value="Snimi" class="btn btn-dark"  /></td></tr>
+    </table>
+</form>

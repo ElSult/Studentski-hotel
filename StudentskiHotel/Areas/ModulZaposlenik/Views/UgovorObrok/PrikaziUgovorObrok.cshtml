@@ -1,0 +1,35 @@
+﻿@using StudentskiHotel.Data.EntityModels;
+@model StudentskiHotel.Web.Areas.ModulZaposlenik.ViewModels.PrikaziUgovorObrokVM
+
+
+
+
+
+
+  
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Vrsta obroka:</th>
+                <th>Broj obroka:</th>
+                <th>Vrijeme početka:</th>
+                <th>Vrijeme završetka:</th>
+                <th>Akcija</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr></tr>
+            @foreach (UgovorObrok x in Model.obrok)
+            {
+                <tr>
+                    <td>@x.Obrok.VrstaObroka.Vrsta</td>
+                    <td>@x.Obrok.BrojObroka</td>
+                    <td>@x.Obrok.VrijemePocetka</td>
+                    <td>@x.Obrok.VrijemeZavrsetka</td>
+                    <td><a href="/ModulZaposlenik/UgovorObrok/ObrisiUO?id=@x.UgovorObrokId" class="btn btn-danger" >Obriši</a></td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+

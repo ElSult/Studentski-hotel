@@ -1,0 +1,55 @@
+﻿@using StudentskiHotel.Data.EntityModels;
+@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.PrikaziNacinPlacanjaVM
+
+<div class="form-group" id="ajaxdiv">
+
+    <form action="/ModulAdministrator/NacinPlacanja/PrikaziNacinPlacanja" autocomplete="off">
+        <table>
+            <tr>
+                <th>Unesite naziv:</th>
+                <td>
+                    @Html.TextBoxFor(x => x.NazivPlacanja, new { @class = "form-control", placeholder = "Unesite naziv..." })
+                </td>
+                <td>
+                    <input type="submit" value="Pretraži" class="btn btn-secondary" />
+
+                </td>
+                <td>
+                    <a href="/ModulAdministrator/NacinPlacanja/DodajNacinPlacanja" ajax-poziv="da" ajax-rezultat="ajaxdiv1" class="btn btn-secondary">Novi nacin placanja</a>
+
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <br />
+
+    <div class="form-group" id="ajaxdiv1"></div>
+
+
+
+    <table id="tabela" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Nacin placanja:</th>
+              
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (NacinPlacanja x in Model.NaciniPlacanja)
+            {
+                <tr>
+                    <td>@x.Naziv</td>
+                    
+
+                    <td><a href="/ModulAdministrator/NacinPlacanja/UrediNacinPlacanja?NacinPlacanjaId=@x.Id" ajax-poziv="da" ajax-rezultat="ajaxdiv1" class="btn btn-warning">Uredi</a></td>
+                    <td><a href="/ModulAdministrator/NacinPlacanja/ObrisiNacinPlacanja?NacinPlacanjaId=@x.Id" ajax-poziv="da" ajax-rezultat="ajaxdiv" class="btn btn-danger">Obrisi</a></td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>
+    
+

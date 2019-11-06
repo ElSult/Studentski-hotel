@@ -1,0 +1,50 @@
+﻿@using StudentskiHotel.Data.EntityModels;
+@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.PrikaziKategorijaProizvodVM
+
+<div class="form-group" id="ajaxdiv">
+
+    <form action="/ModulAdministrator/KategorijaProizvoda/PrikaziKategorijuProizvoda" autocomplete="off">
+        <table>
+            <tr>
+                <th>Unesite naziv:</th>
+                <td>
+                    @Html.TextBoxFor(x => x.NazivKategorije, new { @class = "form-control", placeholder = "Pretraži..." })
+                </td>
+                <td>
+                    <input type="submit" value="Pretraži" class="btn btn-secondary" />
+
+                </td>
+                <td>
+                    <a href="/ModulAdministrator/KategorijaProizvoda/DodajKategorijuProizvoda" ajax-poziv="da" ajax-rezultat="ajaxdiv1" class="btn btn-secondary">Nova kategorija proizvoda</a>
+
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <br />
+
+    <div class="form-group" id="ajaxdiv1"></div>
+
+    <table id="tabela" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Naziv kategorije</th>
+                <th>Akcija</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (KategorijaProizvoda k in Model.kategorijeProizvoda)
+            {
+                <tr>
+                    <td>@k.NazivKategorije</td>
+                    <td>
+                        <a href="/ModulAdministrator/KategorijaProizvoda/UrediKategorijuProizvoda?Id=@k.ID" ajax-poziv="da" ajax-rezultat="ajaxdiv1" class="btn btn-warning">Uredi</a>
+                        <a href="/ModulAdministrator/KategorijaProizvoda/ObrisiKategorijuProizvoda?Id=@k.ID" ajax-poziv="da" ajax-rezultat="ajaxdiv" class="btn btn-danger">Obrisi</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

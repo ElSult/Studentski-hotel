@@ -1,0 +1,96 @@
+﻿@using StudentskiHotel.Data.EntityModels;
+@model StudentskiHotel.Web.Areas.ModulRestoran.ViewModels.PrikaziStavkeRacunaVM
+
+<div class="row" style="margin-top: 25px;">
+    <div class="col-md-4">
+        <form id="KategorijaForm" ajax-poziv="da" action="PrikaziStavke" ajax-rezultat="stavkeDiv" method="get">
+            @Html.HiddenFor(x => x.NarudzbaId)
+            <table>
+                <tr>
+                    <td style="width: 104px">Kategorija</td>
+                    <td>
+                        @Html.DropDownListFor(x => x.KategorijaId, Model._kategorije, null, new { @class = "form-control", @id = "KategorijaDropdown" })
+                    </td>
+                </tr>
+            </table>
+          
+        </form>
+        
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div>
+    <div class="col-md-5" style="display: inline-block">
+        <h3>Proizvodi</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Naziv</th>
+                    <th>Cijena</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Proizvod p in Model._proizvodi)
+                {
+                    <tr>
+                        <td>@p.Naziv</td>
+                        <td>@p.Cijena.ToString("0.00") KM</td>
+                        <td><button class="btn btn-success btn-okrugli"
+                                    ajax-poziv="da"
+                                    ajax-rezultat="stavkeDiv"
+                                    ajax-url="/ModulRestoran/StavkeRacuna/DodajStavke?NarudzbaId=@Model.NarudzbaId&KategorijaId=@Model.KategorijaId&Proizvodid=@p.Id">+</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-6" style="display: inline-block">
+        <h3>Odabrane stavke</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Naziv</th>
+                    <th>Cijena</th>
+                    <th>Količina</th>
+                    <th>Ukupno</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (StavkaRacuna s in Model._stavkeRacuna)
+                {
+                    <tr>
+                        <td>@s.Proizvod.Naziv</td>
+                        <td>@s.Proizvod.Cijena.ToString("0.00") KM</td>
+                        <td>
+                            <button class="btn btn-danger btn-okrugli"
+                                    ajax-poziv="da"
+                                    ajax-rezultat="stavkeDiv"
+                                    ajax-url="/ModulRestoran/StavkeRacuna/OduzmiStavke?NarudzbaId=@Model.NarudzbaId&KategorijaId=@Model.KategorijaId&Proizvodid=@s.ProizvodID">
+                                -
+                            </button>
+                        <input type="number" class="input-kolicina form-control text-center" disabled value="@s.Kolicina" />
+                        <button class="btn btn-success btn-okrugli"
+                                ajax-poziv="da"
+                                ajax-rezultat="stavkeDiv"
+                                ajax-url="/ModulRestoran/StavkeRacuna/DodajStavke?NarudzbaId=@Model.NarudzbaId&KategorijaId=@Model.KategorijaId&Proizvodid=@s.ProizvodID">
+                            +
+                        </button>
+                        </td>
+                        <td>@((s.Proizvod.Cijena * s.Kolicina).ToString("0.00")) KM</td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="3" class="text-right">
+                        <b>Ukupno:</b>
+                    </td>
+                    <td>
+                        @Model.UkupniIznos.ToString("0.00") KM
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="clearfix"></div>
+</div>

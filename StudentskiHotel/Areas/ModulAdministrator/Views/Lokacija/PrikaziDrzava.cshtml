@@ -1,0 +1,54 @@
+﻿@using StudentskiHotel.Data.EntityModels;
+
+@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.PrikaziDrzavaVM
+
+
+
+<div class="form-group" id="ajaxdiv">
+
+    <form action="/ModulAdministrator/Lokacija/PrikaziDrzava" autocomplete="off">
+        <table>
+            <tr>
+                <th>Unesite naziv države:</th>
+                <td>
+                    @Html.TextBoxFor(x => x.NazivPretraga, new { @class = "form-control", placeholder = "Unesite naziv..." })
+                </td>
+                <td>
+                    <input type="submit" value="Pretraži" class="btn btn-secondary" />
+
+                </td>
+                <td>
+                    <a href="/ModulAdministrator/Lokacija/DodajDrzava" ajax-poziv="da" ajax-rezultat="ajaxdiv1" class="btn btn-secondary">Nova država</a>
+
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br />
+ 
+    <div class="form-group" id="ajaxdiv1"></div>
+
+
+
+    <table class="table tab-content">
+        <thead>
+            <tr>
+                <th>Države:</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Drzava x in Model.Drzave)
+            {
+                <tr>
+                    <td>@x.Naziv</td>
+                    <td><a href="/ModulAdministrator/Lokacija/UrediDrzavu?DrzavaId=@x.Id" ajax-poziv="da" ajax-rezultat="ajaxdiv1" class="btn btn-warning">Uredi</a></td>
+                    <td><a href="/ModulAdministrator/Lokacija/ObrisiDrzava?DrzavaId=@x.Id"  ajax-poziv="da" ajax-rezultat="ajaxdiv" class="btn btn-danger">Obrisi</a></td>
+                    <td><a href="/ModulAdministrator/Lokacija/PrikaziKanton?DrzavaId=@x.Id" class="btn btn-secondary">Prikazi kantone</a></td>
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+
+</div>

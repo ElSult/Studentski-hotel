@@ -1,0 +1,55 @@
+﻿@using StudentskiHotel.Data.EntityModels;
+@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.PrikaziFakultetVM
+
+<div class="form-group" id="ajaxdiv">
+    <form action="/ModulAdministrator/Fakultet/PrikaziFakultet" autocomplete="off">
+        <table>
+            <tr>
+                <th>Unesite naziv fakulteta:</th>
+                <td>
+                    @Html.TextBoxFor(x => x.NazivPretraga, new { @class = "form-control", placeholder = "Unesite naziv..." })
+                </td>
+                <td>
+                    <input type="submit" value="Pretraži" class="btn btn-secondary" />
+
+                </td>
+                <td>
+                    <a href="/ModulAdministrator/Fakultet/DodajFakultet" ajax-poziv="da" ajax-rezultat="ajaxdiv1" class="btn btn-secondary">Novi fakultet</a>
+
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <br />
+
+    <div class="form-group" id="ajaxdiv1"></div>
+
+
+
+    <table id="tabela" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Fakulteti:</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (Fakultet x in Model.Fakulteti)
+            {
+                <tr>
+                    <td>@x.Naziv</td>
+
+                    <td><a href="/ModulAdministrator/Fakultet/UrediFakultet?FakultetId=@x.Id" ajax-poziv="da" ajax-rezultat="ajaxdiv1" class="btn btn-warning">Uredi</a></td>
+                    <td><a href="/ModulAdministrator/Fakultet/ObrisiFakultet?FakultetId=@x.Id" ajax-poziv="da" ajax-rezultat="ajaxdiv" class="btn btn-danger">Obrisi</a></td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+
+

@@ -1,0 +1,76 @@
+﻿@using StudentskiHotel.Data.EntityModels;
+@model StudentskiHotel.Web.Areas.ModulZaposlenik.ViewModels.PrikaziStudentVM
+
+
+<form action="/ModulZaposlenik/Student/PrikaziStudent" autocomplete="off">
+    <table class="table table-striped" >
+        <tr>
+            <th>Unesite prezime studenta:</th>
+            <td>
+                @Html.TextBoxFor(x=>x.Prezime, new {@class="form-control", placeholder="Unesite prezime..." })
+            </td>
+            <td>
+                <input type="submit" value="Prikaži" class="btn btn-secondary" />
+            </td>
+            <td>
+                <a href="/ModulZaposlenik/Student/DodajStudent" class="btn btn-secondary">Novi student</a>
+
+            </td>
+        </tr>
+    </table>
+</form>
+<br /><br />
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Ime oca</th>
+            <th>Kontakt telefon</th>
+            <th>Matični broj</th>
+            <th>Spol</th>
+            <th>Datum rodenja</th>
+            <th>Fakultet</th>
+            <th>Godina studija</th>
+            <th>Grad</th>
+            <th>Aktivan</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Student x in Model.studenti)
+        {
+            <tr>
+                <td>@x.Ime</td>
+                <td>@x.Prezime</td>
+                <td>@x.ImeOca</td>
+                <td>@x.KontaktTelefon</td>
+                <td>@x.MaticniBroj</td>
+                <td>@x.Spol</td>
+                <td>@x.DatumRodenja.ToShortDateString()</td>
+                <td>@x.Fakultet.Naziv</td>
+                <td>@x.GodinaStudija.Naziv</td>
+                <td>@x.Grad.Naziv</td>
+                @if (x.IsAktivan)
+                {
+                    <td>Aktivan</td>
+
+                }
+                else
+                {
+                    <td>Neaktivan</td>
+                }
+                <td>
+                    <a href="/ModulZaposlenik/Student/UrediStudent?studentid=@x.Id" class="btn btn-warning">Uredi</a>
+                </td>
+                <td>
+                    <a href="/ModulZaposlenik/StudentskiUgovor/PrikaziStudentskiUgovor?StudentId=@x.Id" class="btn btn-secondary">StudentskiUgovor</a>
+
+                </td>
+            </tr>
+
+        }
+    </tbody>
+
+</table>

@@ -1,0 +1,40 @@
+﻿@model StudentskiHotel.Web.Areas.ModulZaposlenik.ViewModels.DodajTuristaVM
+@{
+    ViewData["Title"] = "UrediTurista";
+}
+
+
+<form action="/ModulZaposlenik/Turist/SnimiTurista">
+    <table>
+        <tr>@Html.HiddenFor(x => x.Id)</tr>
+        <tr>
+            <td>Ime:</td>
+            <td>@Html.TextBoxFor(x => x.Ime, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x=>x.Ime)</td>
+        </tr>
+        <tr>
+            <td>Prezime:</td>
+            <td>@Html.TextBoxFor(x => x.Prezime, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.Prezime)</td>
+        </tr>
+        <tr>
+            <td>Broj pasosa:</td>
+            <td>@Html.TextBoxFor(x => x.BrojPasosa, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.BrojPasosa)</td>
+        </tr>
+        <tr>
+            <td>Kontakt telefon:</td>
+            <td>@Html.TextBoxFor(x => x.KontaktTelefon, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.KontaktTelefon)</td>
+        </tr>
+        <tr>
+            <td>Drzava:</td>
+            <td>@Html.DropDownListFor(x => x.DrzavaID, Model.Drzave, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.DrzavaID, "Drzava je obavezno polje!", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Snimi" class="btn btn-dark" /></td>
+        </tr>
+    </table>
+</form>
+

@@ -1,0 +1,49 @@
+﻿@using StudentskiHotel.Data.EntityModels;
+@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.PrikaziGradVM
+
+<div class="form-group" id="ajaxdiv">
+    <form action="/ModulAdministrator/Lokacija/PrikaziGrad" autocomplete="off">
+        <table>
+            <tr>
+                <td>@Html.HiddenFor(x => x.Kantonid)</td>
+            </tr>
+            <tr>
+                <td>Unesite naziv grada:</td>
+                <td>
+                    @Html.TextBoxFor(x => x.nazivPretrage, new { @class = "form-control", placeholder = "Unesite naziv..." })
+                </td>
+                <td>
+                    <input type="submit" value="Pretraži" class="btn btn-secondary" />
+                </td>
+                <td>
+                    <a class="btn btn-secondary" href="/ModulAdministrator/Lokacija/DodajGrad?kantonID=@Model.Kantonid" ajax-poziv="da" ajax-rezultat="ajaxdiv1">Novi grad</a>
+
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br />
+  
+    <div class="form-group" id="ajaxdiv1"></div>
+
+
+
+    <table class="table tab-content">
+        <thead>
+            <tr><th>Gradovi:</th></tr>
+        </thead>
+        <tbody>
+            @foreach (Grad x in Model.gradovi)
+            {
+                <tr>
+                    <td>@x.Naziv</td>
+                    <td><a href="/ModulAdministrator/Lokacija/UrediGrad?gradid=@x.Id" ajax-poziv="da" ajax-rezultat="ajaxdiv1" class="btn btn-warning">Uredi</a></td>
+                    <td><a href="/ModulAdministrator/Lokacija/ObrisiGrad?gradid=@x.Id" class="btn btn-danger"ajax-poziv="da" ajax-rezultat="ajaxdiv" >Obrisi</a></td>
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+</div>
+@*<a href="/ModulAdministrator/Lokacija/PrikaziKanton?DrzavaId=@Model.drzavaId">Nazad</a>*@

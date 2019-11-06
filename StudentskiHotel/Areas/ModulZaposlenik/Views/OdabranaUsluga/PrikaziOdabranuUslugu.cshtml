@@ -1,0 +1,25 @@
+﻿@using StudentskiHotel.Data.EntityModels
+@model StudentskiHotel.Web.Areas.ModulZaposlenik.ViewModels.PrikaziOdabranuUsluguVM
+@{
+    ViewData["Title"] = "PrikaziOdabranuUslugu";
+}
+<table class="table tab-content">
+    <thead>
+        <tr>
+            <th>Usluga:</th>
+          
+          
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (OdabranaUsluga x in Model.odabraneUsluge)
+        {
+            <tr>
+                <td>@x.Usluga.Naziv</td>
+            
+            </tr>
+        }
+     
+    </tbody>
+
+    </table>

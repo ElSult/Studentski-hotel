@@ -1,0 +1,48 @@
+﻿@using StudentskiHotel.Data.EntityModels
+@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.PrikaziVrstuObrokaVM
+
+<div class="form-group" id="ajaxdiv">
+
+    <form action="/ModulAdministrator/VrstaObroka/PrikaziVrstuObroka" autocomplete="off">
+        <table>
+            <tr>
+                <th>Unesite naziv:</th>
+                <td>
+                    @Html.TextBoxFor(x => x.NazivVrste, new { @class = "form-control", placeholder = "Pretraži..." })
+                </td>
+                <td>
+                    <input type="submit" value="Pretraži" class="btn btn-secondary" />
+
+                </td>
+                <td>
+                    <a href="/ModulAdministrator/VrstaObroka/DodajVrstuObroka" ajax-poziv="da" ajax-rezultat="ajaxdiv1" class="btn btn-secondary">Nova vrsta obroka</a>
+
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <br />
+
+    <div class="form-group" id="ajaxdiv1"></div>
+
+    <table id="tabela" class="table table-hover">
+        <thead>
+            <tr><th>Vrsta obroka</th>
+            <th>Akcija</th></tr>
+        </thead>
+        <tbody>
+            @foreach (VrstaObroka v in Model.VrsteObroka)
+            {
+                <tr>
+                    <td>@v.Vrsta</td>
+                    <td>
+                        <a href="/ModulAdministrator/VrstaObroka/UrediVrstuObroka?VrstaObrokaId=@v.Id" ajax-poziv="da" ajax-rezultat="ajaxdiv1" class="btn btn-warning">Uredi</a>
+                        <a href="/ModulAdministrator/VrstaObroka/ObrisiVrstuObroka?VrstaObrokaId=@v.Id" ajax-poziv="da" ajax-rezultat="ajaxdiv" class="btn btn-danger">Obriši</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>

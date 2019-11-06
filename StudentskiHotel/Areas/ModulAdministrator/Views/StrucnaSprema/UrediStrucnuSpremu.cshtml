@@ -1,0 +1,18 @@
+﻿@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.DodajStrucnuSpremuVM
+@{
+    string poruka = (string)ViewData["poruka"];
+}
+<form action="/ModulAdministrator/StrucnaSprema/SnimiStrucnuSpremu" autocomplete="off" ajax-poziv="da" ajax-rezultat="ajaxdiv">
+    <table>
+        <tr>
+            <td>@Html.HiddenFor(x => x.Id)</td>
+        </tr>
+        <tr>
+            <td>Strucna sprema:</td>
+            <td>@Html.TextBoxFor(x => x.Naziv, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.Naziv)</td>
+            <td>@poruka</td>
+        </tr>
+        <tr><td><input type="submit" value="Snimi" class="btn btn-dark" /></td></tr>
+    </table>
+</form>

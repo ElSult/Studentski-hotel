@@ -1,0 +1,26 @@
+﻿
+@model StudentskiHotel.Web.Areas.ModulZaposlenik.ViewModels.DodajUgovorObrokVM
+
+
+
+<br />
+<form action="/ModulZaposlenik/UgovorObrok/SnimiUO">
+    <table  class="table table-striped">
+        <thead>
+            <tr>@Html.HiddenFor(x => x.UgovorId)</tr>
+            <tr>@Html.HiddenFor(x => x.studentId)</tr>
+           
+        </thead>
+        <tbody>
+            
+            <tr>
+        <td>@Html.DropDownListFor(x=>x.ObrokId, Model.obroci, new { @class = "form-control" })</td>
+     
+            <td>@Html.ValidationMessageFor(x=>x.ObrokId, "Potrebno izabrati obrok!", new { @class = "text-danger" })</td>
+                <td><input type="submit" value="Snimi" class="btn btn-success" /></td>
+            </tr>
+        </tbody>
+    </table>
+    
+</form>
+

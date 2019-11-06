@@ -1,0 +1,21 @@
+﻿
+@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.DodajAkademskaGodinaVM
+
+@{
+    
+    string poruka = (string)ViewData["poruka"];
+}
+
+<form action="/ModulAdministrator/AkademskaGodina/SnimiAkademskaGodina" ajax-poziv="da" ajax-rezultat="ajaxdiv">
+    <table>
+        <tr>@Html.HiddenFor(x => x.Id)</tr>
+        <tr>
+            <th>Akademska godina:</th>
+            <td>@Html.TextBoxFor(x => x.AkGodina, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.AkGodina,"", new { @class = "text-danger" })
+             <span style="color:crimson">@poruka</span></td>
+           
+        </tr>
+        <tr><td><input type="submit" value="Snimi" class="btn btn-success" /></td></tr>
+    </table>
+</form>

@@ -1,0 +1,16 @@
+﻿@model StudentskiHotel.Web.Areas.ModulZaposlenik.ViewModels.DodajOdabranuUsluguVM
+
+<form action="/Modulzaposlenik/OdabranaUsluga/SnimiOdabranuUslugu">
+    <table>
+
+        <tr>@Html.HiddenFor(x => x.RezervacijaID)</tr>
+        <tr>
+            <td>        OdabranaUsluga:</td>
+            <td>@Html.DropDownListFor(x => x.UslugaID, Model.Usluge, new { @class = "form-control" })</td>
+        </tr>
+        @Html.HiddenFor(x => x.RezervacijaID)
+    </table>
+    <input type="submit" value="Snimi" class="btn btn-dark"/>
+</form>
+
+

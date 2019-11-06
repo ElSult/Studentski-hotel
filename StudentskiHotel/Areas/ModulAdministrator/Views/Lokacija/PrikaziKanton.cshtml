@@ -1,0 +1,59 @@
+﻿@using StudentskiHotel.Data.EntityModels;
+@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.PrikaziKantonVM
+
+<div class="form-group" id="ajaxdiv">
+
+    <form action="/ModulAdministrator/Lokacija/PrikaziKanton" autocomplete="off">
+        <table>
+            <tr>
+                <td>
+                    @Html.HiddenFor(x => x.drzavaId)
+                </td>
+            </tr>
+            <tr>
+                <th>Unesite naziv kantona:</th>
+                <td>
+                    @Html.TextBoxFor(x => x.nazivPretrage, new { @class = "form-control", placeholder = "Unesite naziv..." })
+                </td>
+                <td>
+                    <input type="submit" value="Pretraži" class="btn btn-secondary" />
+
+                </td>
+                <td>
+                    <a href="/ModulAdministrator/Lokacija/DodajKanton?drzavaId=@Model.drzavaId" ajax-poziv="da" ajax-rezultat="ajaxdiv1" class="btn btn-secondary">Novi kanton</a>
+
+                </td>
+            </tr>
+        </table>
+    </form>
+    <br />
+
+    <div class="form-group" id="ajaxdiv1"></div>
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Kantoni:</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Kanton x in Model.kantoni)
+            {
+                <tr>
+                    <td>@x.Naziv</td>
+                    <td><a href="/ModulAdministrator/Lokacija/UrediKanton?id=@x.Id" ajax-poziv="da" ajax-rezultat="ajaxdiv1" class="btn btn-warning">Uredi</a></td>
+                    <td><a href="/ModulAdministrator/Lokacija/ObrisiKanton?id=@x.Id" class="btn btn-danger" ajax-poziv="da" ajax-rezultat="ajaxdiv">Obrisi</a></td>
+                    <td><a href="/ModulAdministrator/Lokacija/PrikaziGrad?kantonID=@x.Id" class="btn btn-secondary">Prikazi gradove</a></td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+
+    <a href="/ModulAdministrator/Lokacija/PrikaziDrzava" class="btn btn-secondary">Nazad</a>
+
+</div>
+
+   
+

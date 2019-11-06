@@ -1,0 +1,18 @@
+﻿@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.DodajVrstuObrokaVM
+
+@{
+    string poruka = (string)ViewData["poruka"];
+}
+
+
+<form action="/ModulAdministrator/VrstaObroka/SnimiVrstuObroka" autocomplete="off" ajax-poziv="da" ajax-rezultat="ajaxdiv">
+    <table>
+        <tr>
+            <td>Vrsta obroka: </td>
+            <td>@Html.TextBoxFor(x => x.Vrsta, new { @class = "form-control" })</td>
+        </tr>
+        <tr><td><input type="submit" name="snimi" value="Snimi" class="btn btn-dark" /></td></tr>
+
+    </table>
+</form>
+

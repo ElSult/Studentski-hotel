@@ -1,0 +1,27 @@
+﻿@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.DodajVrstuSobeVM
+@{
+    string poruka = (string)ViewData["poruka"];
+}
+<form action="/ModulAdministrator/VrstaSobe/SnimiVrstuSobe" autocomplete="off" ajax-poziv="da" ajax-rezultat="ajaxdiv">
+    <table>
+        <tr>
+            <td>@Html.HiddenFor(x => x.Id)</td>
+        </tr>
+        <tr>
+            <td>Tip sobe:</td>
+            <td>@Html.TextBoxFor(x => x.Tip, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.Tip)</td>
+            <td>@poruka</td>
+        </tr>
+        <tr>
+            <td>Cijena: </td>
+            <td>@Html.TextBoxFor(x => x.Cijena, new { @class = "form-control" })</td>
+            <td>@Html.ValidationMessageFor(x => x.Cijena, "", new { @class = "text-danger" })</td>
+            <td>@poruka</td>
+        </tr>
+
+        <tr><td><input type="submit" value="Snimi" class="btn btn-dark" /></td></tr>
+
+    </table>
+</form>
+

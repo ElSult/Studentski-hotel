@@ -1,0 +1,23 @@
+﻿@using StudentskiHotel.Data.EntityModels;
+
+@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.DodajKategorijuVM
+
+@{
+    string poruka = (string)ViewData["poruka"];
+}
+
+<form action="/ModulAdministrator/Kategorija/SnimiKategoriju" autocomplete="off" ajax-poziv="da" ajax-rezultat="ajaxdiv">
+    <table>
+        <tr>
+            <td>Naziv kategorije:</td>
+            <td>@Html.TextBoxFor(x => x.Naziv, new { @class = "form-control" })</td>
+
+        </tr>
+        <tr>
+            <td>Cijena:</td>
+            <td>@Html.TextBoxFor(x => x.Cijena, new { @class = "form-control" })</td>
+
+        </tr>
+        <tr><td><input type="submit" value="Snimi" class="btn btn-dark" /></td></tr>
+    </table>
+</form>

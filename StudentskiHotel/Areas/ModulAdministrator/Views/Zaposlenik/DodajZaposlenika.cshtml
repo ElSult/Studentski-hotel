@@ -1,0 +1,57 @@
+﻿@using StudentskiHotel.Data.EntityModels
+@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.DodajZposlenikaVM
+
+@{
+    ViewData["Title"] = "DodajZaposlenika";
+}
+
+
+<form action="/ModulAdministrator/Zaposlenik/SnimiZaposlenika"  autocomplete="off">
+    <table>
+        <tr>
+            <td>Ime:</td>
+            <td> @Html.TextBoxFor(x => x.Ime, new { @class = "form-control" }) </td>
+        </tr>
+        <tr>
+            <td>Prezime:</td>
+            <td>@Html.TextBoxFor(x => x.Prezime, new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>Maticni broj:</td>
+            <td>@Html.TextBoxFor(x => x.MaticniBroj, new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>Datum rodjenja</td>
+            <td>@Html.TextBoxFor(x => x.DatumRodenja, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })</td>
+        </tr>
+        <tr>
+            <td>Spol:</td>
+            <td>@Html.DropDownList("Spol", Html.GetEnumSelectList<Gender>(), "Odaberite spol:", new { @class = "form-control" })</td>
+
+        </tr>
+        <tr>
+            <td>Mjesto rodjenja:</td>
+            <td>@Html.DropDownListFor(x => x.GradID, Model.GradoviStavke, new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>Strucna sprema:</td>
+            <td>@Html.DropDownListFor(x => x.StrucnaSpremaID, Model.StrucnaSpremaStavke, new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>Tip zaposlenika:</td>
+            <td>@Html.DropDownList("Tip", Html.GetEnumSelectList<TipZaposlenika>(), "Odaberite tip:", new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>Korisnicko ime:</td>
+            <td>@Html.TextBoxFor(x => x.KorisnickoIme, new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td>Lozinka:</td>
+            <td>@Html.TextBoxFor(x => x.Lozinka, new { @class = "form-control" })</td>
+        </tr>
+    </table>
+    <input type="submit" value="Snimi" class="btn btn-dark" />
+
+
+</form>
+

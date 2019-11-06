@@ -1,0 +1,15 @@
+﻿@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.DodajGodinaStudijaVM
+
+
+
+<form action="/ModulAdministrator/GodinaStudija/SnimiGodinaStudija" autocomplete="off" ajax-poziv="da" ajax-rezultat="ajaxdiv">
+    <table>
+       
+        <tr>
+            <th>Godina studija:</th>
+            <td>@Html.TextBoxFor(x => x.Naziv, new { @class = "form-control" })</td>
+            <td><input type="submit" value="Snimi" class="btn btn-success" /></td>
+        </tr>
+       
+    </table>
+</form>

@@ -1,0 +1,40 @@
+﻿@using StudentskiHotel.Data.EntityModels;
+@model StudentskiHotel.Web.Areas.ModulZaposlenik.ViewModels.PrikaziRezervacijuVM
+    
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Vrijeme dolaska</th>
+            <th>Vrijeme odlaska</th>
+            <th>Nacin placanja</th>
+            <th>Kategorija:</th>
+            <th>Soba</th>
+            <th>Turist</th>
+            <th>Zaposlenik</th>
+            <th>Trajanje</th>
+            <th></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Rezervacija x in Model.Rezervacije)
+        {
+        <tr>
+            <td>@x.VrijemeDolaska</td>
+            <td>@x.VrijemeOdlaska</td>
+            <td>@x.NacinPlacanja.Naziv</td>
+            <td>@x.Kategorija.Naziv</td>
+            <td>@x.Soba.BrojSobe</td>
+            <td>@x.Turist.Ime @x.Turist.Prezime</td>
+            <td>@x.Zaposlenik.Ime</td>
+            <td>@((x.VrijemeOdlaska - x.VrijemeDolaska).Days) dana</td>
+            <td><a href="/ModulZaposlenik/Rezervacija/PrikaziRacun?RezervacijaId=@x.Id" class="btn btn-dark">Racun</a></td>
+        </tr>
+
+        }
+    </tbody>
+    <!--
+        <tr><td><a href="/ModulZaposlenik/Rezervacija/DodajRezervaciju?@Model.TuristID=TuristId" class="btn btn-primary">Dodaj</a></td></tr>
+        -->
+</table>
+

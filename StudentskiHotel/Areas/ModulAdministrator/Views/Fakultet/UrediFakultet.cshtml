@@ -1,0 +1,22 @@
+﻿
+@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.DodajFakultetVM
+
+@{
+    
+    string poruka = (string)ViewData["poruka"];
+
+}
+
+<form action="/ModulAdministrator/Fakultet/SnimiFakultet" ajax-poziv="da" ajax-rezultat="ajaxdiv">
+    <table>
+        <tr>@Html.HiddenFor(x => x.Id)</tr>
+        <tr>
+            <th>Fakultet:</th>
+        <td>@Html.TextBoxFor(x => x.Naziv, new { @class = "form-control" })</td>
+        <td column-span>@Html.ValidationMessageFor(x => x.Naziv, "", new { @class = "text-danger" })
+            <span style="color:crimson">@poruka</span></td>
+      </tr>
+        <tr><td><input type="submit" value="Snimi" class="btn btn-success" /></td></tr>
+    </table>
+</form>
+

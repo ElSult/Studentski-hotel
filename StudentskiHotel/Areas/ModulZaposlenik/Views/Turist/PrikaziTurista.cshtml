@@ -1,0 +1,56 @@
+﻿@using StudentskiHotel.Data.EntityModels
+@model StudentskiHotel.Web.Areas.ModulZaposlenik.ViewModels.PrikaziTuristaVM
+<form action="/ModulZaposlenik/Turist/PrikaziTurista" autocomplete="off">
+    <table>
+        <tr>
+            <th>Unesite prezime turista:</th>
+            <td>
+                @Html.TextBoxFor(x => x.prezime, new { @class = "form-control", placeholder = "Unesite prezime..." })
+            </td>
+            <td>
+                <input type="submit" value="Prikaži" class="btn btn-secondary" />
+            </td>
+            <td>
+                <a href="/ModulZaposlenik/Turist/DodajTurista" class="btn btn-secondary">Novi turist</a>
+
+            </td>
+        </tr>
+    </table>
+</form>
+<br /><br />
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <td>Ime</td>
+            <td>Prezime</td>
+            <td>Broj pasosa</td>
+            <td>Kontakt telefon</td>
+            <td>Drazava</td>
+            <td>Akcija</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Turist x in Model.turisti)
+        {
+            <tr>
+                <td>@x.Ime</td>
+                <td>@x.Prezime</td>
+                <td>@x.BrojPasosa</td>
+                <td>@x.KontaktTelefon.ToString()</td>
+                <td>@x.Drzava.Naziv</td>
+                <td>
+                    <a href="/ModulZaposlenik/Turist/UrediTurista?turistId=@x.Id" class="btn btn-warning">Uredi</a>
+                </td>
+                <td>
+                    <a href="/ModulZaposlenik/Rezervacija/DodajRezervaciju?turistId=@x.Id" class="btn btn-secondary">Dodaj Rezervaciju</a>
+                </td>
+                <td>
+                    <a href="/ModulZaposlenik/Rezervacija/InformacijeORezervaciji?turistId=@x.Id" class="btn btn-secondary">Informacije o rezervaciji</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+    @*<tr><td><a href="/ModulZaposlenik/Turist/DodajTurista" class="btn btn-primary">Dodaj</a></td></tr>*@
+</table>
+

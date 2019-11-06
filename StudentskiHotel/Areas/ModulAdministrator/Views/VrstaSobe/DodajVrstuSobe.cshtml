@@ -1,0 +1,19 @@
+﻿@model StudentskiHotel.Web.Areas.ModulAdministrator.ViewModels.DodajVrstuSobeVM
+
+
+<form action="/ModulAdministrator/VrstaSobe/SnimiVrstuSobe" autocomplete="off" ajax-poziv="da" ajax-rezultat="ajaxdiv">
+    <table>
+        <tr>
+            <td> Tip sobe: </td>
+            <td>@Html.TextBoxFor(x => x.Tip, new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td> Cijena: </td>
+            <td>@Html.TextBoxFor(x => x.Cijena, new { @class = "form-control" })</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Snimi" class="btn btn-dark" /></td>
+        </tr>
+
+    </table>
+</form>

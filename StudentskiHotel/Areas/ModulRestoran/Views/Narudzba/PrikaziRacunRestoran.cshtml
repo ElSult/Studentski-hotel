@@ -1,0 +1,68 @@
+﻿@using StudentskiHotel.Data.EntityModels
+@model StudentskiHotel.Web.Areas.ModulRestoran.ViewModels.PrikaziRacunRestoranVM
+
+@{
+    ViewData["Title"] = "Prikazi Racun";
+}
+
+<h3>Informacije o narudzbi</h3>
+<table class="table table-striped" style="width: 700px;">
+    <tr>
+        <td>Konobar:</td>
+        <td><strong>@Model.narudzba.Zaposlenik.Ime @Model.narudzba.Zaposlenik.Prezime</strong></td>
+    </tr>
+    <tr>
+        <td style="width: 25%">Datum narudzbe :</td>
+        <td>@Model.narudzba.DatumNarudzbe</td>
+    </tr>
+    <tr>
+        <td>Nacin placanja:</td>
+        <td>@Model.narudzba.NacinPlacanja.Naziv</td>
+    </tr>
+</table>
+
+<h3>Racun</h3>
+<table class="table " style="width: 700px; margin-bottom: 0">
+    <thead>
+        <tr>
+            <th style="width: 50%">Naziv</th>
+            <th style="text-align: right">Cijena</th>
+            <th style="text-align: right; width: 10%">Kolicina</th>
+            <th style="text-align: right">Ukupno</th>
+        </tr>
+    </thead>
+    @foreach(var Stavka in Model.stavke)
+    {
+        <tr>
+            <td>
+                @Stavka.Proizvod.Naziv
+            </td>
+            <td style="text-align: right">
+                @Stavka.Proizvod.Cijena.ToString("0.00") KM
+            </td>
+            <td>
+                @Stavka.Kolicina
+            </td>
+            <td style="text-align: right">
+                @((Stavka.Proizvod.Cijena * Stavka.Kolicina).ToString("0.00")) KM
+            </td>
+        </tr>
+    }
+
+
+
+</table>
+<table class="table" style="width: 700px;">
+    <tr>
+        <td style="width: 80%;">
+            <strong>Ukupni iznos:</strong>
+        </td>
+        <td style="text-align: right">
+            <strong>@Model.racun?.UkupanIznos.ToString("0.00") KM</strong>
+        </td>
+    </tr>
+</table>
+
+
+
+<a href="/ModulRestoran/Narudzba/PrikaziNarudzbu" class="btn btn-primary">Nazad</a>

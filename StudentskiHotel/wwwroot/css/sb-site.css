@@ -1,0 +1,49 @@
+﻿.field-validation-valid {
+    display: none;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+.field-validation-error, .validation-summary-error {
+    color: #a94442
+}
+
+.btn-okrugli {
+    font-weight: bold;
+    font-size: 22px;
+    border-radius: 25px;
+    padding: 0px 8px;
+}
+
+.btn-okrugli.btn-danger {
+    padding: 0 11px;
+}
+
+.input-kolicina {
+    width: 50px;
+    display: inline-block;
+}
+
+.admin-icon {
+    min-height: 165px;
+}
+
+.admin-icon i.fa {
+    display: block;
+}
+
+.admin-icon a {
+    display: block;
+    text-align: center;
+    color: grey;
+}
+
+.admin-icon a:hover {
+    text-decoration: none;
+}
+
+.icon-text {
+    font-size: 18px;
+}

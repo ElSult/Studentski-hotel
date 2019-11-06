@@ -1,0 +1,45 @@
+﻿@using StudentskiHotel.Data.EntityModels;
+@model StudentskiHotel.Web.Areas.ModulRestoran.ViewModels.PrikaziNarudzbuVM
+
+
+<table class="tab-content table table-striped">
+    <thead>
+        <tr>
+            <th>Datum narudžbe</th>
+            <th>Način plaćanja</th>
+            <th>Iznos računa</th>
+            <th>Akcija</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Narudzba n in Model.narudzbe)
+        {
+            <tr>
+                <td>@n.DatumNarudzbe</td>
+                <td>@n.NacinPlacanja?.Naziv</td>
+                <td>@(n.RacunRestoran is null ? " - " : n.RacunRestoran.UkupanIznos.ToString("0.00") + " KM")</td>
+                <td>
+                    @if (n.Zavrsena == false)
+                    {
+                        <a class="btn btn-warning" href="/ModulRestoran/Narudzba/UrediNarudzbu/@n.Id">Uredi</a>
+                    }
+
+                    <a class="btn btn-danger" href="/ModulRestoran/Narudzba/IzbrisiNarudzbu/@n.Id">Izbriši</a>
+
+                    @if (n.Zavrsena == true)
+                    {
+                        <a class="btn btn-info" href="/ModulRestoran/Narudzba/PrikaziRacunRestoran/@n.Id">Prikaži račun</a>
+                    }
+                </td>
+            </tr>
+
+        }
+        <tr>
+            <td>
+                <a class="btn btn-primary" href="/ModulRestoran/Narudzba/DodajNarudzbu">Dodaj</a>
+            </td>
+        </tr>
+    </tbody>
+
+
+</table>

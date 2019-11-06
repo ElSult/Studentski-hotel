@@ -1,0 +1,52 @@
+﻿
+
+@model StudentskiHotel.Web.Areas.ModulZaposlenik.ViewModels.DodajStudentskiUgovorVM
+
+
+@{
+    string poruka = (string)ViewData["poruka"];
+    string sobaGreska = ViewBag.sobaGreska;
+}
+
+<form action="/ModulZaposlenik/StudentskiUgovor/SnimiStudentskiUgovor">
+    <table class="table table-striped">
+        <tr>@Html.HiddenFor(x => x.StudentID)</tr>
+        <tr>@Html.HiddenFor(x => x.Id)</tr>
+        <tr>
+            <th>Broj kartice</th>
+            <td>@Html.TextBoxFor(x => x.BrojKartice, new { @class = "form-control" }) </td>
+            <td>@Html.ValidationMessageFor(x => x.BrojKartice, "", new { @class = "text-danger" }) <span style="color:crimson">@poruka</span></td>
+
+        </tr>
+        <tr>
+            <th>Ugovor zakljucen dana</th>
+            <td>@Html.TextBoxFor(x => x.UgovorZakljucenDana, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control" } })</td>
+            <td>@Html.ValidationMessageFor(x => x.UgovorZakljucenDana, "", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <th>Mjesecna najamnina</th>
+            <td>@Html.TextBoxFor(x => x.MjesecnaNajamnina, new { @class = "form-control" }) </td>
+            <td>@Html.ValidationMessageFor(x => x.MjesecnaNajamnina, "", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <th>Soba</th>
+            <td>@Html.DropDownListFor(x => x.SobaID, Model.sobe, new { @class = "form-control" }) </td>
+            <td>@Html.ValidationMessageFor(x => x.SobaID, "Soba je obavezno polje!", new { @class = "text-danger" }) <span style="color:crimson">@sobaGreska</span></td>
+        </tr>
+
+        @Html.HiddenFor(x => x.StudentID)
+        <tr>
+            <th>Akademska godina</th>
+            <td>@Html.DropDownListFor(x => x.AkademskaGodinaID, Model.akGodine, new { @class = "form-control" }) </td>
+            <td>@Html.ValidationMessageFor(x => x.AkademskaGodinaID, "Akademska godina je obavezno polje!", new { @class = "text-danger" })</td>
+        </tr>
+        <tr>
+            <th>Aktivan</th>
+            <td>@Html.CheckBoxFor(x => x.IsAktivan, new { @class = "form-control" }) </td>
+
+        </tr>
+
+    </table>
+    <input type="submit" value="Snimi" class="btn btn-success" />
+</form>
+

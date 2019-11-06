@@ -1,0 +1,112 @@
+﻿@using StudentskiHotel.Data.EntityModels
+@model StudentskiHotel.Web.Areas.ModulZaposlenik.ViewModels.PrikaziRacunVM
+
+<h3>Informacije o rezervaciji</h3>
+<table class="table table-striped" style="width: 700px;">
+    <tr>
+        <td>Turist:</td>
+        <td><strong>@Model.rezervacija.Turist.Ime @Model.rezervacija.Turist.Prezime</strong></td>
+    </tr>
+    <tr>
+        <td>Zaposlenik:</td>
+        <td><strong>@Model.rezervacija.Zaposlenik.Ime @Model.rezervacija.Zaposlenik.Prezime</strong></td>
+    </tr>
+    <tr>
+        <td style="width: 25%">Vrijeme dolaska:</td>
+        <td>@Model.rezervacija.VrijemeDolaska</td>
+    </tr>
+    <tr>
+        <td>Vrijeme odlaska:</td>
+        <td>@Model.rezervacija.VrijemeOdlaska</td>
+    </tr>
+    <tr>
+        <td>Trajanje:</td>
+        <td>@Model.trajanje dana</td>
+    </tr>
+    <tr>
+        <td>Nacin placanja:</td>
+        <td>@Model.rezervacija.NacinPlacanja.Naziv</td>
+    </tr>
+    <tr>
+        <td>Kategorija:</td>
+        <td>@Model.rezervacija.Kategorija.Naziv</td>
+    </tr>
+    <tr>
+        <td>Broj sobe:</td>
+        <td>@Model.rezervacija.Soba.BrojSobe</td>
+    </tr>
+</table>
+
+<h3>Racun</h3>
+<table class="table " style="width: 700px; margin-bottom: 0">
+    <thead>
+        <tr>
+            <th style="width: 50%">Naziv</th>
+            <th style="text-align: right">Cijena</th>
+            <th style="text-align: right; width: 10%">Trajanje</th>
+            <th style="text-align: right">Ukupno</th>
+        </tr>
+    </thead>
+    <tr>
+        <td>
+            Kategorija @Model.rezervacija.Kategorija.Naziv
+        </td>
+        <td style="text-align: right">
+            @Model.rezervacija.Kategorija.Cijena.ToString("0.00") KM
+        </td>
+        <td>
+            @Model.trajanje dana
+        </td>
+        <td style="text-align: right">
+            @((Model.rezervacija.Kategorija.Cijena * Model.trajanje).ToString("0.00")) KM
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Model.rezervacija.Soba.VrstaSobe.Tip soba
+        </td>
+        <td style="text-align: right">
+            @Model.rezervacija.Soba.VrstaSobe.Cijena.ToString("0.00") KM
+        </td>
+        <td>
+            @Model.trajanje dana
+        </td>
+        <td style="text-align: right">
+            @((Model.rezervacija.Soba.VrstaSobe.Cijena * Model.trajanje).ToString("0.00")) KM
+        </td>
+    </tr>
+    @for (int i = 0; i < Model.odabraneUsluge.Count(); i++)
+    {
+        <tr>
+            <td>
+                @Model.odabraneUsluge[i].Usluga.Naziv
+            </td>
+            <td style="text-align: right">
+                @Model.odabraneUsluge[i].Usluga.Cijena.ToString("0.00") KM
+            </td>
+            <td>
+                @Model.trajanje dana
+            </td>
+            <td style="text-align: right">
+                @((Model.odabraneUsluge[i].Usluga.Cijena * Model.trajanje).ToString("0.00")) KM
+            </td>
+        </tr>
+    }
+
+
+
+</table>
+<table class="table" style="width: 700px;">
+    <tr>
+        <td style="width: 80%;">
+            <strong>Ukupni iznos:</strong>
+        </td>
+        <td style="text-align: right">
+            <strong>@Model.racun.Iznos.ToString("0.00") KM</strong>
+        </td>
+    </tr>
+</table>
+
+
+
+ <a href="/ModulZaposlenik/Rezervacija/PrikaziRezervaciju" class="btn btn-secondary">Nazad</a>
